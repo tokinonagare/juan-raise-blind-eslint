@@ -1,9 +1,9 @@
 import { View, Text, Switch } from 'react-native';
 import React from 'react';
-import { styles } from './styles';
+import { styles } from '../styles';
 import { useState } from 'react';
 
-const BlindsFlip = (props) => {
+const BlindsEnableFlipComponent = (props) => {
 
     const FlipHandler = () => {
       props.handleFlipChange();
@@ -25,4 +25,4 @@ const BlindsFlip = (props) => {
     )
 }
 
-export default BlindsFlip;
+export default BlindsEnableFlipComponent;

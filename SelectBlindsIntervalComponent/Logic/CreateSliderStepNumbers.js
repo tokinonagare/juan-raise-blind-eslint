@@ -1,6 +1,6 @@
 
 
-const sliderSteps = (props) => {
+const CreateSliderStepNumbers = (props) => {
     const timeStart = props.timeStart;
     const timeStep = props.timeStep;
     const timeNumberOfSteps = props.timeNumberOfSteps;
@@ -17,4 +17,4 @@ const sliderSteps = (props) => {
     return data;
 }
 
-export default sliderSteps;
+export default CreateSliderStepNumbers;

@@ -1,6 +1,6 @@
 
 
-const buildList = (data) => {
+const CreateBlindStructureList = (data) => {
     let list = [];
 
     let startTime = [ 0, 0 ];
@@ -40,4 +40,4 @@ const buildList = (data) => {
     return list;
 }
 
-export default buildList;
+export default CreateBlindStructureList;
