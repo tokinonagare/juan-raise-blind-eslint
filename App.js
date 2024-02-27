@@ -17,40 +17,22 @@ import buildList from './buildList';
 import { changeInterval, blindChangeState } from './blindsSlice';
 import { connect } from 'react-redux';
 import sliderSteps from './sliderSteps';
-
-
+import BlindsFlip from './BlindsFlipped';
+import BlindsSlider from './BlindsSlider';
 
 const Stack = createStackNavigator();
 
 
-const mapStateToProps = (state) => {
-  return {
-    interval: state.blinds.raiseBlindInterval,
-    switchState: state.blinds.isRaiseBlind,
-    minute: state.blinds.startTimeMinute,
-    second: state.blinds.startTimeSecond,
-    blind1: state.blinds.blind1,
-    blind2: state.blinds.blind2,
-    sliderStep: state.blinds.sliderStep,
-    sliderNumberOfSteps: state.blinds.sliderNumberOfSteps
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeInterval: (text) => dispatch(changeInterval(text)),
-    blindChangeState: () => dispatch(blindChangeState())
-  };
-}
-
 const MyComponent = (props) => {
 
-  function PreviewBlindsStructureScreen({ route, navigation }) {
+  function PreviewBlindsStructureScreen( {route, navigation} ) {
+    
+    const props = route.params.data;
     const data = {
       duration: { minute: props.interval, second: 0 },
-      interval: (props.switchState ? 2 : 1),
-      startTime: { minute: props.minute, second: props.second },
-      blinds: { blind1: props.blind1, blind2: props.blind2 }
+      interval: (props.flipState ? 2 : 1),
+      startTime: { minute: props.minute, second: 0 },
+      blinds: { blind1: 1, blind2: 2 }
     }
     const list = buildList(data);
 
@@ -62,23 +44,43 @@ const MyComponent = (props) => {
   }
 
   function HomeScreen({ navigation }) {
-    const sliderStepsProps = {
-      timeStart: props.minute,
-      timeStep: props.sliderStep,
-      timeNumberOfSteps: props.sliderNumberOfSteps,
-      switchState: props.switchState
+    const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
+    const [isRaiseBlind, setIsRaiseBlind] = useState(false);
+
+    const [MinimumValue] = useState(3);
+    const [MaximumValue] = useState(7);
+    const [ValueIncrements] = useState(2);
+ 
+    const data = {
+      interval: raiseBlindInterval,
+      flipState: isRaiseBlind,
+      minute: MinimumValue
     }
-    const data = sliderSteps(sliderStepsProps)
+
     const handleSliderChange = (value) => {
-      props.changeInterval(value);
+      setRaiseBlindInterval(value);
     };
 
-    const handleSwitchChange = () => {
-      props.blindChangeState();
+    const handleFlipChange = () => {
+      setIsRaiseBlind(!isRaiseBlind);
     }
 
     const ButtonHandler = () => {
-      navigation.navigate('PreviewBlindsStructure', { data: data })
+      console.log(data)
+      navigation.navigate('PreviewBlindsStructure', {data: data })
+    }
+
+    const BlindsFlippedProps = {
+      flipState: isRaiseBlind,
+      handleFlipChange: handleFlipChange,
+    }
+
+    const BlindsSliderProps = {
+      MinimumValue: MinimumValue,
+      MaximumValue: MaximumValue,
+      ValueIncrements: ValueIncrements,
+      raiseBlindInterval: raiseBlindInterval,
+      handleSliderChange: handleSliderChange
     }
 
     const ButtonProps = {
@@ -89,34 +91,8 @@ const MyComponent = (props) => {
     return (
       <View style={styles.home}>
         <View style={styles.sliderBox}>
-          <View style={styles.switchContainer}>
-            <View style={styles.switchContents}>
-              <Text style={styles.switchText}>Blind Level Length</Text>
-            </View>
-            <View style={styles.switchContent}>
-              <Switch 
-                value={props.switchState}
-                onValueChange={handleSwitchChange}
-		trackColor={{ true: "#44CCEE" }}
-              />
-            </View>
-          </View>
-          <View style={styles.stepContainer}>
-            {data.timeStepList.map((line, index) => (
-            <Text key={index} style={props.interval == line ? styles.sliderNumberSelected : styles.sliderNumber}>{line}m</Text>
-            ))}
-          </View>
-          <Slider
-            style={styles.slider}
-            minimumValue={sliderStepsProps.timeStart}
-            maximumValue={data.maxTime}
-            step={sliderStepsProps.timeStep}
-            value={props.interval}
-            onValueChange={handleSliderChange}
-            minimumTrackTintColor="#44CCEE"
-            maximumTrackTintColor="#000000"
-            thumbTintColor="#44CCEE"
-          />
+          <BlindsFlip {...BlindsFlippedProps} />
+            <BlindsSlider {...BlindsSliderProps} />
           <NavigationButton {...ButtonProps} />
         </View>
       </View>
@@ -133,4 +109,4 @@ const MyComponent = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);
+export default MyComponent;
