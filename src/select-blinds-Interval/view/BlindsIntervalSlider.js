@@ -1,6 +1,6 @@
 import {Slider, Text, View} from 'react-native';
 import React from 'react';
-import {styles} from '../../../styles';
+import {styles} from '../../styles';
 import CreateSliderStepNumbers from '../model/CreateSliderStepNumbers';
 
 const BlindsIntervalSlider = props => {

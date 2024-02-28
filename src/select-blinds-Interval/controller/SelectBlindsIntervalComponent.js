@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {styles} from '../../../styles';
-import NavigationButton from '../../../NavigationButton';
+import {styles} from '../../styles';
+import NavigationButton from '../view/NavigationButton';
 import BlindsEnableFlip from '../view/BlindsEnableFlip';
 import BlindsIntervalSlider from '../view/BlindsIntervalSlider';
+import StepSlider from '../view/StepSlider.native';
 
 function SelectBlindsIntervalComponent({navigation}) {
   const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
@@ -49,12 +50,24 @@ function SelectBlindsIntervalComponent({navigation}) {
     onPress: ButtonHandler,
   };
 
+  const props = {
+    testID: 'a',
+    steps: [3, 5, 7],
+    labels: ['3m', '5m', '7m'],
+    currentValue: 3,
+    onChange: handleSliderChange,
+    showLabels: true,
+    useClockThumbImage: false,
+  };
+
   return (
     <View style={styles.homeContainer}>
       <View style={styles.RaiseBlindsContainer}>
         <BlindsEnableFlip {...BlindsFlipProps} />
-        <BlindsIntervalSlider {...BlindsSliderProps} />
-        <NavigationButton {...NavigationButtonProps} />
+        <StepSlider {...props} />
+        <View style={styles.navigationCentre}>
+          <NavigationButton {...NavigationButtonProps} />
+        </View>
       </View>
     </View>
   );

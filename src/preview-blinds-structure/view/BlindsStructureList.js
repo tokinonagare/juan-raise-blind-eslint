@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {styles} from '../../../styles';
+import {styles} from '../../styles';
 
 const DynamicTable = ({data}) => {
   const renderItem = ({item}) => (

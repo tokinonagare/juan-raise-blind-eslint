@@ -16,13 +16,13 @@ import java.util.List;
  * `newArchEnabled` property). Is ignored otherwise.
  */
 public class MainApplicationTurboModuleManagerDelegate
-    extends ReactPackageTurboModuleManagerDelegate {
+  extends ReactPackageTurboModuleManagerDelegate {
 
   private static volatile boolean sIsSoLibraryLoaded;
 
   protected MainApplicationTurboModuleManagerDelegate(
-      ReactApplicationContext reactApplicationContext, List<ReactPackage> packages) {
-    super(reactApplicationContext, packages);
+    ReactApplicationContext reactApplicationContext, List<ReactPackage> packages) {
+  super(reactApplicationContext, packages);
   }
 
   protected native HybridData initHybrid();
@@ -30,19 +30,19 @@ public class MainApplicationTurboModuleManagerDelegate
   native boolean canCreateTurboModule(String moduleName);
 
   public static class Builder extends ReactPackageTurboModuleManagerDelegate.Builder {
-    protected MainApplicationTurboModuleManagerDelegate build(
-        ReactApplicationContext context, List<ReactPackage> packages) {
-      return new MainApplicationTurboModuleManagerDelegate(context, packages);
-    }
+  protected MainApplicationTurboModuleManagerDelegate build(
+    ReactApplicationContext context, List<ReactPackage> packages) {
+    return new MainApplicationTurboModuleManagerDelegate(context, packages);
+  }
   }
 
   @Override
   protected synchronized void maybeLoadOtherSoLibraries() {
-    if (!sIsSoLibraryLoaded) {
-      // If you change the name of your application .so file in the Android.mk file,
-      // make sure you update the name here as well.
-      SoLoader.loadLibrary("previewblindsstructure_appmodules");
-      sIsSoLibraryLoaded = true;
-    }
+  if (!sIsSoLibraryLoaded) {
+    // If you change the name of your application .so file in the Android.mk file,
+    // make sure you update the name here as well.
+    SoLoader.loadLibrary("previewblindsstructure_appmodules");
+    sIsSoLibraryLoaded = true;
+  }
   }
 }

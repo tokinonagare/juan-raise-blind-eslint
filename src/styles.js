@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
     backgroundColor: '#CCCCCC',
@@ -15,13 +14,11 @@ export const styles = StyleSheet.create({
   RaiseBlindsContainer: {
     padding: 10,
     backgroundColor: '#FFFFFF',
-    alignItems: 'center',
   },
   flipContainer: {
     flexDirection: 'row',
     marginLeft: 15,
     marginRight: 15,
-    marginBottom: 20,
     marginTop: 8,
   },
   flipContents: {
@@ -70,6 +67,9 @@ export const styles = StyleSheet.create({
   tableRight: {
     flex: 1,
     textAlign: 'right',
+  },
+  navigationCentre: {
+    alignItems: 'center',
   },
   navigationContainer: {
     flexDirection: 'row',
