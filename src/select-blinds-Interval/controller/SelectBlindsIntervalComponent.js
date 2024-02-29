@@ -3,18 +3,16 @@ import {View} from 'react-native';
 import {SelectBlindsIntervalComponentStyle as styles} from './style/SelectBlindsIntervalComponentStyle';
 import NavigationButton from '../view/NavigationButton';
 import BlindsEnableFlip from '../view/BlindsEnableFlip';
-import StepSlider from '../view/StepSlider.native';
+import StepSlider from '../../../lib/StepIndicator/StepSlider.native';
 
 function SelectBlindsIntervalComponent({navigation}) {
   const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
   const [isRaiseBlind, setIsRaiseBlind] = useState(false);
+  const [gameTime] = useState({minute: 0, second: 0});
 
-  const [MinimumValue] = useState(3);
-
-  const data = {
-    interval: raiseBlindInterval,
-    flipState: isRaiseBlind,
-    minute: MinimumValue,
+  const blindStructureData = {
+    raiseBlindInterval: raiseBlindInterval,
+    gameTime: gameTime,
   };
 
   const handleSliderChange = value => {
@@ -26,7 +24,7 @@ function SelectBlindsIntervalComponent({navigation}) {
   };
 
   const ButtonHandler = () => {
-    navigation.navigate('PreviewBlindsStructure', {data: data});
+    navigation.navigate('PreviewBlindsStructure', {data: blindStructureData});
   };
 
   const BlindsFlipProps = {
@@ -53,10 +51,16 @@ function SelectBlindsIntervalComponent({navigation}) {
     <View style={styles.homeContainer}>
       <View style={styles.RaiseBlindsContainer}>
         <BlindsEnableFlip {...BlindsFlipProps} />
-        <StepSlider {...props} />
-        <View style={styles.navigationCentre}>
-          <NavigationButton {...NavigationButtonProps} />
-        </View>
+        {isRaiseBlind ? (
+          <View>
+            <StepSlider {...props} />
+            <View style={styles.navigationCentre}>
+              <NavigationButton {...NavigationButtonProps} />
+            </View>
+          </View>
+        ) : (
+          <View />
+        )}
       </View>
     </View>
   );

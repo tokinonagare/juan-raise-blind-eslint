@@ -6,15 +6,11 @@ import CreateBlindStructureList from '../model/CreateBlindsStructureList';
 function PreviewBlindsStructureComponent({route, navigation}) {
   const props = route.params.data;
   const data = {
-    duration: {
-      minute: props.interval,
+    raiseBlindInterval: {
+      minute: props.raiseBlindInterval,
       second: 0,
     },
-    interval: props.flipState ? 2 : 1,
-    startTime: {
-      minute: props.minute,
-      second: 0,
-    },
+    gameTime: props.gameTime,
     blinds: {
       blind1: 1,
       blind2: 2,
