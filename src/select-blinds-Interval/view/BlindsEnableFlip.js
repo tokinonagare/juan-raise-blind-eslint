@@ -1,6 +1,6 @@
 import {View, Text, Switch} from 'react-native';
 import React from 'react';
-import {styles} from '../../styles';
+import {BlindsEnableFlipStyle as styles} from './style/BlindsEnableFlipStyle';
 
 const BlindsEnableFlip = props => {
   const FlipHandler = () => {
@@ -12,7 +12,7 @@ const BlindsEnableFlip = props => {
       <View style={styles.flipContents}>
         <Text style={styles.flipText}>Blind Level Length</Text>
       </View>
-      <View style={styles.switchContent}>
+      <View>
         <Switch
           onValueChange={FlipHandler}
           value={props.flipState}

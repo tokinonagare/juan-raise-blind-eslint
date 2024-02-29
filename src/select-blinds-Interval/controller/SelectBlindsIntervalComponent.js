@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {styles} from '../../styles';
+import {SelectBlindsIntervalComponentStyle as styles} from './style/SelectBlindsIntervalComponentStyle';
 import NavigationButton from '../view/NavigationButton';
 import BlindsEnableFlip from '../view/BlindsEnableFlip';
-import BlindsIntervalSlider from '../view/BlindsIntervalSlider';
 import StepSlider from '../view/StepSlider.native';
 
 function SelectBlindsIntervalComponent({navigation}) {
@@ -11,8 +10,6 @@ function SelectBlindsIntervalComponent({navigation}) {
   const [isRaiseBlind, setIsRaiseBlind] = useState(false);
 
   const [MinimumValue] = useState(3);
-  const [MaximumValue] = useState(7);
-  const [ValueIncrements] = useState(2);
 
   const data = {
     interval: raiseBlindInterval,
@@ -35,14 +32,6 @@ function SelectBlindsIntervalComponent({navigation}) {
   const BlindsFlipProps = {
     flipState: isRaiseBlind,
     handleFlipChange: handleFlipChange,
-  };
-
-  const BlindsSliderProps = {
-    MinimumValue: MinimumValue,
-    MaximumValue: MaximumValue,
-    ValueIncrements: ValueIncrements,
-    raiseBlindInterval: raiseBlindInterval,
-    handleSliderChange: handleSliderChange,
   };
 
   const NavigationButtonProps = {

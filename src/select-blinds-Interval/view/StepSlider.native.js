@@ -4,6 +4,8 @@ import {View} from 'react-native';
 import AppTheme from '../../../resource/AppTheme';
 import StepIndicator from './StepIndicator';
 
+import {StepSlider_nativeStyle as style} from './style/StepSlider.nativeStyle';
+
 const iconCreateRoomChip = require('../../../resource/icon_create_room_chip.png');
 const iconCreateRoomClock = require('../../../resource/icon_create_room_clock.png');
 
@@ -22,7 +24,6 @@ const StepSlider = props => {
   } = props;
   let {labels} = props;
   if (!(steps && steps.length)) {
-    console.log('au');
     return null;
   }
   if (showLabels && !labels) {
@@ -31,10 +32,9 @@ const StepSlider = props => {
   const value = steps.findIndex(item => item === currentValue);
   return (
     <View
-      style={{
-        height: showLabels ? 60 : 50,
-        marginTop: 10,
-      }}>
+      style={
+        showLabels ? style.ParentView_showLabels : style.ParentView_noLabels
+      }>
       <StepIndicator
         testID={testID}
         step={1}

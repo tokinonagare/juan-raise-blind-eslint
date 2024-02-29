@@ -1,6 +1,6 @@
 import {TouchableOpacity, Text} from 'react-native';
 import React from 'react';
-import {styles} from '../../styles';
+import {NavigationButtonStyles as styles} from './style/NavigationButtonStyles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const NavigationButton = props => {

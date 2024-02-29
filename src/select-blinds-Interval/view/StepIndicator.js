@@ -8,9 +8,9 @@
  * https://github.com/jeanregisser/react-native-slider
  * https://github.com/24ark/react-native-step-indicator
  * 这两个组件自定义的。
-*/
-
+.*/
 /* eslint-disable */
+
 import React, { PureComponent } from 'react';
 
 import {
@@ -378,7 +378,6 @@ export default class StepIndicator extends PureComponent {
         }
         this[storeName] = size;
         const { labels } = this.props;
-        console.log(this._containerSize)
         if (labels) {
             if (this._containerSize && this._trackSize && this._thumbSize && this._stepLabelSize) {
                 this.setState({
@@ -720,6 +719,7 @@ export default class StepIndicator extends PureComponent {
     };
 
     render() {
+        console.disableYellowBox = true;
         const {
             styles, style, debugTouchArea, testID = DEFAULT_TEST_ID, ...other
         } = this.props;
@@ -809,3 +809,5 @@ const defaultStyles = StyleSheet.create({
         fontSize: 13,
     },
 });
+
+/* eslint-enable */

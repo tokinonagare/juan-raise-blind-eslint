@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {styles} from '../../styles';
+import {BlindStructuresListStyle as styles} from './style/BlindsStructureListStyle';
 
 const DynamicTable = ({data}) => {
   const renderItem = ({item}) => (
