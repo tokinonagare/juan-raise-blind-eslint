@@ -14,8 +14,8 @@ const Stack = createStackNavigator();
 const ParentComponent = () => {
     const SelectBlindsIntervalProps = {
         data: {
-            gameTime: { minute: 0, second: 0 },
-            smallBlind: { blind1: 1, blind2: 2 },
+            gameTime: 0,
+            smallBlind: 1,
         },
     };
     const titleHome = 'Home';

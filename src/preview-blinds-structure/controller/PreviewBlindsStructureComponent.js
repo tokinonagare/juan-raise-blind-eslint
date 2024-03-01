@@ -5,18 +5,14 @@ import CreateBlindStructureList from '../model/CreateBlindsStructureList';
 import NavigationButton from '../view/NavigationButton';
 
 const PreviewBlindsStructureComponent = ({ navigation, route }) => {
-    console.log(route);
     const props = route.params.data;
-    console.log(props);
+
     const [raiseBlindInterval] = useState(props.raiseBlindInterval);
     const [gameTime] = useState(props.gameTime);
     const [smallBlind] = useState(props.smallBlind);
 
     const data = {
-        raiseBlindInterval: {
-            minute: raiseBlindInterval,
-            second: 0,
-        },
+        raiseBlindInterval,
         gameTime,
         smallBlind,
     };

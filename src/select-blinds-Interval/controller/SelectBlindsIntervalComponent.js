@@ -8,8 +8,8 @@ import StepSlider from '../../../lib/StepIndicator/StepSlider.native';
 const SelectBlindsIntervalComponent = ({ navigation, route }) => {
     const { params } = route;
 
-    const [gameTime] = useState(params != null ? params.data.gameTime : { minute: 0, second: 0 });
-    const [smallBlind] = useState(params != null ? params.data.smallBlind : { blind1: 1, blind2: 2 });
+    const [gameTime] = useState(params != null ? params.data.gameTime : 0);
+    const [smallBlind] = useState(params != null ? params.data.smallBlind : 1);
 
     const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
     const [isRaiseBlind, setIsRaiseBlind] = useState(false);
