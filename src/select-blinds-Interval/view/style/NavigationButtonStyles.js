@@ -4,6 +4,8 @@ export const NavigationButtonStyles = StyleSheet.create({
     navigationContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        textAlignVertical: 'center',
+        textAlign: 'center',
         marginTop: 10,
         paddingTop: 6,
         paddingBottom: 6,
@@ -12,6 +14,10 @@ export const NavigationButtonStyles = StyleSheet.create({
     },
     navigationText: {
         fontSize: 15,
+        color: '#44CCEE',
+    },
+    navigationArrow: {
+        fontSize: 20,
         color: '#44CCEE',
     },
 });

@@ -54,7 +54,7 @@ const SelectBlindsIntervalComponent = ({ navigation, route }) => {
 
     return (
         <View style={styles.homeContainer}>
-            <View style={styles.RaiseBlindsContainer}>
+            <View>
                 <BlindsEnableFlip {...BlindsFlipProps}/>
                 {isRaiseBlind ? (
                     <View>

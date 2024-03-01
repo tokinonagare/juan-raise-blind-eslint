@@ -1,6 +1,5 @@
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationButtonStyles as styles } from './style/NavigationButtonStyles';
 
 const NavigationButton = (props) => {
@@ -15,7 +14,7 @@ const NavigationButton = (props) => {
             style={styles.navigationContainer}
             onPress={handlePress}
         >
-            <Icon name="chevron-left" size={16} color="#000000"/>
+            <Text style={styles.navigationArrow}>❮</Text>
         </TouchableOpacity>
     );
 };

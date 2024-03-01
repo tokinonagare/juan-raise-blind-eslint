@@ -10,4 +10,7 @@ export const NavigationButtonStyles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 15,
     },
+    navigationArrow: {
+        fontSize: 20,
+    },
 });

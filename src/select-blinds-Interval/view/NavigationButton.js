@@ -1,6 +1,5 @@
 import { TouchableOpacity, Text } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationButtonStyles as styles } from './style/NavigationButtonStyles';
 
 const NavigationButton = (props) => {
@@ -13,7 +12,9 @@ const NavigationButton = (props) => {
             <Text style={styles.navigationText}>
                 {`${label} `}
             </Text>
-            <Icon name="chevron-right" size={16} color="#44CCEE"/>
+            <Text style={styles.navigationArrow}>
+                ❯
+            </Text>
         </TouchableOpacity>
     );
 };
