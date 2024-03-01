@@ -1,17 +1,17 @@
-const CreateSliderStepNumbers = props => {
-  const timeStart = props.timeStart;
-  const timeStep = props.timeStep;
-  const timeNumberOfSteps = props.timeNumberOfSteps;
-  const timeStepList = [];
-  for (let x = 0; x < timeNumberOfSteps; x++) {
-    timeStepList.push(timeStart + timeStep * x);
-  }
+const CreateSliderStepNumbers = (props) => {
+    const { timeStart } = props;
+    const { timeStep } = props;
+    const { timeNumberOfSteps } = props;
+    const timeStepList = [];
+    for (let x = 0; x < timeNumberOfSteps; x += 1) {
+        timeStepList.push(timeStart + timeStep * x);
+    }
 
-  const data = {
-    timeStepList: timeStepList,
-  };
+    const data = {
+        timeStepList,
+    };
 
-  return data;
+    return data;
 };
 
 export default CreateSliderStepNumbers;

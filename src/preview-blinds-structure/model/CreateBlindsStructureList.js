@@ -1,44 +1,44 @@
-const CreateBlindStructureList = data => {
-  let list = [];
-  let initialBlinds = [1, 2];
+const CreateBlindStructureList = (data) => {
+    const list = [];
+    const { smallBlind } = data;
 
-  for (let x = 0; x < 10; x++) {
-    let level = x + 1;
-    let minute = data.raiseBlindInterval.minute * level + data.gameTime.minute;
-    let second = data.raiseBlindInterval.second * level + data.gameTime.second;
+    for (let x = 0; x < 10; x += 1) {
+        const level = x + 1;
+        let minute = data.raiseBlindInterval.minute * level + data.gameTime.minute;
+        let second = data.raiseBlindInterval.second * level + data.gameTime.second;
 
-    minute = minute.toString().length === 1 ? '0' + minute : minute;
-    second = second.toString().length === 1 ? '0' + second : second;
+        minute = minute.toString().length === 1 ? `0${minute}` : minute;
+        second = second.toString().length === 1 ? `0${second}` : second;
+        const time = `${minute.toString()}:${second.toString()}`;
 
-    let time = minute.toString() + ':' + second.toString();
-    let baseBlind = 2 ** x;
-    let blind1 = baseBlind * initialBlinds[0];
-    let blind2 = baseBlind * initialBlinds[1];
-    let blinds = blind1 + '/' + blind2;
+        const baseBlind = 2 ** x;
+        const blind1 = baseBlind * smallBlind.blind1;
+        const blind2 = baseBlind * smallBlind.blind2;
+        const blinds = `${blind1}/${blind2}`;
 
-    let newItem = {
-      Level: level,
-      Time: time,
-      Blinds: blinds,
+        const newItem = {
+            Level: level,
+            Time: time,
+            Blinds: blinds,
+        };
+
+        list.push(newItem);
+    }
+
+    const { minute } = data.raiseBlindInterval;
+    let { second } = data.raiseBlindInterval;
+
+    second = second.toString().length === 1 ? `0${second}` : second;
+
+    const endItem = {
+        Level: '...',
+        Time: `+${minute}:${second}`,
+        Blinds: '*2',
     };
 
-    list.push(newItem);
-  }
+    list.push(endItem);
 
-  let minute = data.raiseBlindInterval.minute;
-  let second = data.raiseBlindInterval.second;
-
-  second = second.toString().length === 1 ? '0' + second : second;
-
-  let endItem = {
-    Level: '...',
-    Time: '+' + minute + ':' + second,
-    Blinds: '*2',
-  };
-
-  list.push(endItem);
-
-  return list;
+    return list;
 };
 
 export default CreateBlindStructureList;

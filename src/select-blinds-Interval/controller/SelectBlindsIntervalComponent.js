@@ -1,69 +1,74 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
-import {SelectBlindsIntervalComponentStyle as styles} from './style/SelectBlindsIntervalComponentStyle';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { SelectBlindsIntervalComponentStyle as styles } from './style/SelectBlindsIntervalComponentStyle';
 import NavigationButton from '../view/NavigationButton';
 import BlindsEnableFlip from '../view/BlindsEnableFlip';
 import StepSlider from '../../../lib/StepIndicator/StepSlider.native';
 
-function SelectBlindsIntervalComponent({navigation}) {
-  const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
-  const [isRaiseBlind, setIsRaiseBlind] = useState(false);
-  const [gameTime] = useState({minute: 0, second: 0});
+const SelectBlindsIntervalComponent = ({ navigation, route }) => {
+    const { params } = route;
 
-  const blindStructureData = {
-    raiseBlindInterval: raiseBlindInterval,
-    gameTime: gameTime,
-  };
+    const [gameTime] = useState(params != null ? params.data.gameTime : { minute: 0, second: 0 });
+    const [smallBlind] = useState(params != null ? params.data.smallBlind : { blind1: 1, blind2: 2 });
 
-  const handleSliderChange = value => {
-    setRaiseBlindInterval(value);
-  };
+    const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
+    const [isRaiseBlind, setIsRaiseBlind] = useState(false);
 
-  const handleFlipChange = () => {
-    setIsRaiseBlind(!isRaiseBlind);
-  };
+    const handleSliderChange = (value) => {
+        setRaiseBlindInterval(value);
+    };
 
-  const ButtonHandler = () => {
-    navigation.navigate('PreviewBlindsStructure', {data: blindStructureData});
-  };
+    const handleFlipChange = () => {
+        setIsRaiseBlind(!isRaiseBlind);
+    };
 
-  const BlindsFlipProps = {
-    flipState: isRaiseBlind,
-    handleFlipChange: handleFlipChange,
-  };
+    const ButtonHandler = () => {
+        const blindStructureData = {
+            raiseBlindInterval,
+            gameTime,
+            smallBlind,
+        };
 
-  const NavigationButtonProps = {
-    label: 'Blinds Structure',
-    onPress: ButtonHandler,
-  };
+        navigation.navigate('PreviewBlindsStructure', { data: blindStructureData });
+    };
 
-  const props = {
-    testID: 'a',
-    steps: [3, 5, 7],
-    labels: ['3m', '5m', '7m'],
-    currentValue: 3,
-    onChange: handleSliderChange,
-    showLabels: true,
-    useClockThumbImage: false,
-  };
+    const BlindsFlipProps = {
+        flipState: isRaiseBlind,
+        handleFlipChange,
+    };
 
-  return (
-    <View style={styles.homeContainer}>
-      <View style={styles.RaiseBlindsContainer}>
-        <BlindsEnableFlip {...BlindsFlipProps} />
-        {isRaiseBlind ? (
-          <View>
-            <StepSlider {...props} />
-            <View style={styles.navigationCentre}>
-              <NavigationButton {...NavigationButtonProps} />
+    const NavigationButtonProps = {
+        label: 'Blinds Structure',
+        onPress: ButtonHandler,
+    };
+
+    const stepSliderProps = {
+        testID: 'a',
+        steps: [3, 5, 7],
+        labels: ['3m', '5m', '7m'],
+        currentValue: raiseBlindInterval,
+        onChange: handleSliderChange,
+        showLabels: true,
+        useClockThumbImage: false,
+    };
+
+    return (
+        <View style={styles.homeContainer}>
+            <View style={styles.RaiseBlindsContainer}>
+                <BlindsEnableFlip {...BlindsFlipProps}/>
+                {isRaiseBlind ? (
+                    <View>
+                        <StepSlider {...stepSliderProps}/>
+                        <View style={styles.navigationCentre}>
+                            <NavigationButton {...NavigationButtonProps}/>
+                        </View>
+                    </View>
+                ) : (
+                    <View/>
+                )}
             </View>
-          </View>
-        ) : (
-          <View />
-        )}
-      </View>
-    </View>
-  );
-}
+        </View>
+    );
+};
 
 export default SelectBlindsIntervalComponent;

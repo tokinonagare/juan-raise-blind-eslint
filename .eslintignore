@@ -1,0 +1,4 @@
+/lib/StepIndicator/*
+/node_modules/**
+/android/**
+/ios/**

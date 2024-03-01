@@ -1,19 +1,21 @@
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavigationButtonStyles as styles } from './style/NavigationButtonStyles';
 
 const NavigationButton = (props) => {
-    const { onPress, label } = props;
+    const { onPress } = props;
+
+    const handlePress = () => {
+        onPress();
+    };
+
     return (
         <TouchableOpacity
             style={styles.navigationContainer}
-            onPress={onPress}
+            onPress={handlePress}
         >
-            <Text style={styles.navigationText}>
-                {`${label} `}
-            </Text>
-            <Icon name="chevron-right" size={16} color="#44CCEE"/>
+            <Icon name="chevron-left" size={16} color="#000000"/>
         </TouchableOpacity>
     );
 };
