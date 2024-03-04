@@ -1,29 +1,20 @@
 import { View } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import BlindsStructureList from '../view/BlindsStructureList';
 import CreateBlindStructureList from '../model/CreateBlindsStructureList';
 import NavigationButton from '../view/NavigationButton';
 
 const PreviewBlindsStructureComponent = ({ navigation, route }) => {
-    const props = route.params.data;
-
-    const [raiseBlindInterval] = useState(props.raiseBlindInterval);
-    const [gameTime] = useState(props.gameTime);
-    const [smallBlind] = useState(props.smallBlind);
+    const props = route.params.blindStructureData;
 
     const data = {
-        raiseBlindInterval,
-        gameTime,
-        smallBlind,
-    };
-
-    const ParentProps = {
-        raiseBlindInterval,
-        gameTime,
+        raiseBlindInterval: props.raiseBlindInterval,
+        gameTime: props.gameTime,
+        smallBlind: props.smallBlind,
     };
 
     const GoToParent = () => {
-        navigation.navigate('Home', { data: ParentProps });
+        navigation.navigate('Home', { data });
     };
 
     const NavigationProps = {

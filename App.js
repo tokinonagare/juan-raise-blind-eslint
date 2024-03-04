@@ -6,18 +6,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SelectBlindsIntervalComponent from './src/select-blinds-Interval/controller/SelectBlindsIntervalComponent';
 import PreviewBlindsStructureComponent from './src/preview-blinds-structure/controller/PreviewBlindsStructureComponent';
+import ParentComponent from './src/parent/controller/ParentComponent';
 
 const Stack = createStackNavigator();
 
-const ParentComponent = () => {
-    const SelectBlindsIntervalProps = {
-        data: {
-            gameTime: 0,
-            smallBlind: 1,
-        },
-    };
+const App = () => {
     const titleHome = 'Home';
     const titleBlindsStructure = 'Preview Blinds Structure';
     return (
@@ -25,11 +19,10 @@ const ParentComponent = () => {
             <Stack.Navigator>
                 <Stack.Screen
                     name="Home"
-                    component={SelectBlindsIntervalComponent}
+                    component={ParentComponent}
                     options={{
                         title: titleHome,
                     }}
-                    initialParams={SelectBlindsIntervalProps}
                 />
                 <Stack.Screen
                     name="PreviewBlindsStructure"
@@ -43,4 +36,4 @@ const ParentComponent = () => {
     );
 };
 
-export default ParentComponent;
+export default App;

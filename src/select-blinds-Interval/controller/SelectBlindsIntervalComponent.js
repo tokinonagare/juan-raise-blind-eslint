@@ -4,22 +4,32 @@ import { SelectBlindsIntervalComponentStyle as styles } from './style/SelectBlin
 import NavigationButton from '../view/NavigationButton';
 import BlindsEnableFlip from '../view/BlindsEnableFlip';
 import StepSlider from '../../../lib/StepIndicator/StepSlider.native';
+import CreateTimeBasedRules from '../model/CreateTimeBasedRules';
 
-const SelectBlindsIntervalComponent = ({ navigation, route }) => {
-    const { params } = route;
-
-    const [gameTime] = useState(params != null ? params.data.gameTime : 0);
-    const [smallBlind] = useState(params != null ? params.data.smallBlind : 1);
-
-    const [raiseBlindInterval, setRaiseBlindInterval] = useState(3);
+const SelectBlindsIntervalComponent = ({
+    navigation, data, setTimeBasedRules,
+}) => {
+    const [gameTime] = useState(data.gameTime || 0);
+    const [smallBlind] = useState(data.smallBlind || 1);
+    const [raiseBlindInterval, setRaiseBlindInterval] = useState(180);
     const [isRaiseBlind, setIsRaiseBlind] = useState(false);
 
+    const createTimeBasedRules = (value) => {
+        const listData = {
+            gameTime,
+            raiseBlindInterval: value,
+            smallBlind,
+        };
+        const list = CreateTimeBasedRules(listData);
+        setTimeBasedRules(list);
+    };
+
     const handleSliderChange = (value) => {
-        setRaiseBlindInterval(value);
+        setRaiseBlindInterval(value * 60, createTimeBasedRules(value * 60));
     };
 
     const handleFlipChange = () => {
-        setIsRaiseBlind(!isRaiseBlind);
+        setIsRaiseBlind(!isRaiseBlind, createTimeBasedRules(raiseBlindInterval));
     };
 
     const ButtonHandler = () => {
@@ -28,8 +38,7 @@ const SelectBlindsIntervalComponent = ({ navigation, route }) => {
             gameTime,
             smallBlind,
         };
-
-        navigation.navigate('PreviewBlindsStructure', { data: blindStructureData });
+        navigation.navigate('PreviewBlindsStructure', { blindStructureData });
     };
 
     const BlindsFlipProps = {
@@ -46,7 +55,7 @@ const SelectBlindsIntervalComponent = ({ navigation, route }) => {
         testID: 'a',
         steps: [3, 5, 7],
         labels: ['3m', '5m', '7m'],
-        currentValue: raiseBlindInterval,
+        currentValue: raiseBlindInterval / 60,
         onChange: handleSliderChange,
         showLabels: true,
         useClockThumbImage: false,
