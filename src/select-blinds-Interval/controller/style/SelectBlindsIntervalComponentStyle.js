@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-export const SelectBlindsIntervalComponentStyle = StyleSheet.create({
+export default StyleSheet.create({
     homeContainer: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        marginTop: 15,
     },
     navigationCentre: {
         alignItems: 'center',

@@ -1,11 +1,13 @@
 import { View } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import BlindsStructureList from '../view/BlindsStructureList';
 import CreateBlindStructureList from '../model/CreateBlindsStructureList';
-import NavigationButton from '../view/NavigationButton';
+import Localization from '../../../lib/localization/Localization';
 
-const PreviewBlindsStructureComponent = ({ navigation, route }) => {
-    const props = route.params.blindStructureData;
+const PreviewBlindsStructureComponent = ({
+    route,
+}) => {
+    const props = route.params.data;
 
     const data = {
         raiseBlindInterval: props.raiseBlindInterval,
@@ -13,23 +15,7 @@ const PreviewBlindsStructureComponent = ({ navigation, route }) => {
         smallBlind: props.smallBlind,
     };
 
-    const GoToParent = () => {
-        navigation.navigate('Home', { data });
-    };
-
-    const NavigationProps = {
-        onPress: GoToParent,
-    };
-
     const list = CreateBlindStructureList(data);
-
-    const createNavigationButton = () => <NavigationButton {...NavigationProps}/>;
-
-    useEffect(() => {
-        navigation.setOptions({
-            headerLeft: createNavigationButton,
-        });
-    }, []);
 
     return (
         <View>
@@ -37,5 +23,7 @@ const PreviewBlindsStructureComponent = ({ navigation, route }) => {
         </View>
     );
 };
+
+PreviewBlindsStructureComponent.navigationOptions = { title: Localization.translate('raise_blind_detail') };
 
 export default PreviewBlindsStructureComponent;

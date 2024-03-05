@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
+import AppTheme from '../../../../lib/util/AppTheme';
 
 export const BlindsEnableFlipStyle = StyleSheet.create({
     flipContainer: {
         flexDirection: 'row',
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 8,
     },
     flipContents: {
         flex: 1,
     },
     flipText: {
         fontSize: 15,
+        fontFamily: AppTheme.ContentTextFont,
+        color: AppTheme.ContentTextColor,
     },
 });
