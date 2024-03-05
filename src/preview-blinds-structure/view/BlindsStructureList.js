@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { BlindStructuresListStyle as styles } from './style/BlindsStructureListStyle';
+import Localization from '../../../lib/localization/Localization';
 
 const DynamicTable = ({ data }) => {
     const renderItem = ({ item }) => (
@@ -37,7 +38,7 @@ const DynamicTable = ({ data }) => {
                         })()
                     }
                 >
-                    {key}
+                    {Localization.translate(key)}
                 </Text>
             ))}
         </View>

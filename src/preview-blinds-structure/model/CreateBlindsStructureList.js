@@ -1,11 +1,13 @@
 const CreateBlindStructureList = (data) => {
     const list = [];
     const { gameTime, raiseBlindInterval, smallBlind } = data;
+    const raiseBlindIntervalSeconds = raiseBlindInterval * 60;
 
-    for (let x = 0; x < 10; x += 1) {
+    const maxLevel = Math.floor(gameTime / raiseBlindIntervalSeconds);
+    for (let x = 0; x < maxLevel; x += 1) {
         const level = x + 1;
-        let minute = Math.floor(raiseBlindInterval / 60) * level + Math.floor(gameTime / 60);
-        let second = Math.floor(raiseBlindInterval % 60) * level + Math.floor(gameTime % 60);
+        let minute = Math.floor(raiseBlindIntervalSeconds / 60) * level;
+        let second = Math.floor(raiseBlindIntervalSeconds % 60) * level;
 
         minute = minute.toString().length === 1 ? `0${minute}` : minute;
         second = second.toString().length === 1 ? `0${second}` : second;
@@ -17,16 +19,16 @@ const CreateBlindStructureList = (data) => {
         const blinds = `${blind1}/${blind2}`;
 
         const newItem = {
-            Level: level,
-            Time: time,
-            Blinds: blinds,
+            user_level: level,
+            times: time,
+            blind_label: blinds,
         };
 
         list.push(newItem);
     }
 
-    const minute = Math.floor(raiseBlindInterval / 60);
-    let second = Math.floor(raiseBlindInterval % 60);
+    const minute = Math.floor(raiseBlindIntervalSeconds / 60);
+    let second = Math.floor(raiseBlindIntervalSeconds % 60);
 
     second = second.toString().length === 1 ? `0${second}` : second;
 
