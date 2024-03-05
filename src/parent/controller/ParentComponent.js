@@ -36,7 +36,6 @@ const ParentComponent = ({ navigation }) => {
 
     const setRoomRule = (value) => {
         roomRule = value;
-        console.log('roomrule: ', roomRule);
     };
 
     const SelectBlindsIntervalProps = {

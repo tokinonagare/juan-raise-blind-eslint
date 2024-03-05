@@ -1,7 +1,7 @@
 const CreateBlindStructureList = (data) => {
     const list = [];
     const { gameTime, raiseBlindInterval, smallBlind } = data;
-    console.log(raiseBlindInterval);
+
     const maxLevel = Math.floor(gameTime / raiseBlindInterval);
     for (let x = 0; x < maxLevel; x += 1) {
         const level = x + 1;
