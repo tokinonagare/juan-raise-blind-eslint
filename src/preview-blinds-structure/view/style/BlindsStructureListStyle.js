@@ -1,25 +1,34 @@
 import { StyleSheet } from 'react-native';
+import Color from '../../../../lib/util/Color';
 
 export const BlindStructuresListStyle = StyleSheet.create({
     tableCell: {
         flexDirection: 'row',
-        padding: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        backgroundColor: Color.white,
+        borderBottomColor: Color.backgroundGrey,
+        borderBottomWidth: 2,
     },
     tableCellHeader: {
         flexDirection: 'row',
-        padding: 10,
-        backgroundColor: 'lightgray',
+        paddingHorizontal: 10,
+        paddingVertical: 12,
+        backgroundColor: Color.grayBackground,
     },
     tableLeft: {
-        flex: 1,
+        flex: 2,
         textAlign: 'left',
+        color: Color.softBlue,
     },
     tableCentre: {
-        flex: 1,
+        flex: 2,
         textAlign: 'center',
+        color: Color.textBlack,
     },
     tableRight: {
-        flex: 1,
+        flex: 3,
         textAlign: 'right',
+        color: Color.textBlack,
     },
 });

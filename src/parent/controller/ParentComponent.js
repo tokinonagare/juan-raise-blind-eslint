@@ -6,17 +6,42 @@ import { ParentComponentStyle as styles } from './style/ParentComponentStyle';
 const ParentComponent = ({ navigation }) => {
     const [TimeBasedRules, SetTimeBasedRules] = useState(null);
 
-    const setTimeBasedRules = (data) => {
-        SetTimeBasedRules(data);
+    const [bookingSecond] = useState(3600);
+    const [smallBlind] = useState(1);
+    const [raiseBlindSeconds, SetRaiseBlindInterval] = useState(180);
+    const [isRaiseBlind, SetRaiseBlindEnable] = useState(false);
+
+    const setRaiseBlindRules = (value) => {
+        SetTimeBasedRules(value);
         console.log(TimeBasedRules);
     };
 
+    const setRaiseBlindEnable = (value) => {
+        SetRaiseBlindEnable(value);
+    };
+
+    const setRaiseBlindInterval = (value) => {
+        SetRaiseBlindInterval(value);
+    };
+
+    let roomRule = {
+        bookingSecond,
+        smallBlind,
+        raiseBlindSeconds,
+        isRaiseBlind,
+        setRaiseBlindRules,
+        setRaiseBlindEnable,
+        setRaiseBlindInterval,
+    };
+
+    const setRoomRule = (value) => {
+        roomRule = value;
+        console.log('roomrule: ', roomRule);
+    };
+
     const SelectBlindsIntervalProps = {
-        data: {
-            gameTime: 0,
-            smallBlind: 1,
-        },
-        setTimeBasedRules,
+        roomRule,
+        setRoomRule,
         navigation,
     };
 

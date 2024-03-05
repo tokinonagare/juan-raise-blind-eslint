@@ -8,12 +8,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import PreviewBlindsStructureComponent from './src/preview-blinds-structure/controller/PreviewBlindsStructureComponent';
 import ParentComponent from './src/parent/controller/ParentComponent';
+import Localization from './lib/localization/Localization';
 
 const Stack = createStackNavigator();
 
 const App = () => {
-    const titleHome = 'Home';
-    const titleBlindsStructure = 'Preview Blinds Structure';
+    const titleHome = Localization.translate('home_label');
+    const titleBlindsStructure = Localization.translate('preview_blinds_structure_label');
     return (
         <NavigationContainer>
             <Stack.Navigator>

@@ -16,7 +16,7 @@ const SelectBlindsIntervalComponent = ({
     const [gameTime] = useState(roomRule.bookingSecond || 30 * 60);
     const [smallBlind] = useState(roomRule.smallBlind || 1);
 
-    const [raiseBlindInterval, setRaiseBlindInterval] = useState(roomRule.raiseBlindSeconds / 60);
+    const [raiseBlindInterval, setRaiseBlindInterval] = useState(roomRule.raiseBlindSeconds);
     const [isRaiseBlind, setIsRaiseBlind] = useState(roomRule.isRaiseBlind || false);
 
     const handleSliderChange = (value) => {
@@ -28,7 +28,7 @@ const SelectBlindsIntervalComponent = ({
         });
         roomRule.setRaiseBlindRules(raiseBlindRules);
         setRoomRule(roomRule);
-        setRaiseBlindInterval(value);
+        setRaiseBlindInterval(value * 60);
     };
 
     const handleFlipChange = () => {
@@ -66,10 +66,8 @@ const SelectBlindsIntervalComponent = ({
     const stepSliderProps = {
         testID: 'a',
         steps: [3, 5, 7],
-        labels: ['3m', '5m', '7m'],
-        currentValue: raiseBlindInterval,
+        currentValue: raiseBlindInterval / 60,
         onChange: handleSliderChange,
-        showLabels: true,
         useClockThumbImage: false,
     };
 
