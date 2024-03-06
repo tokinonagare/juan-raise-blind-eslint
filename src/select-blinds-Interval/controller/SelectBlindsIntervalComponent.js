@@ -73,6 +73,7 @@ const SelectBlindsIntervalComponent = ({
         onChange: handleSliderChange,
         useClockThumbImage: false,
         formatLabel,
+        showLabels: true,
     };
 
     return (
