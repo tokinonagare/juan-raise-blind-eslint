@@ -63,12 +63,16 @@ const SelectBlindsIntervalComponent = ({
         onPress: ButtonHandler,
     };
 
+    const formatLabel = (value) => `${value}m`;
+
     const stepSliderProps = {
         testID: 'a',
         steps: [3, 5, 7],
+        labels: ['3m', '5m', '7m'],
         currentValue: raiseBlindInterval / 60,
         onChange: handleSliderChange,
         useClockThumbImage: false,
+        formatLabel,
     };
 
     return (
