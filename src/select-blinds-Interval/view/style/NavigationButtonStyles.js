@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const NavigationButtonStyles = StyleSheet.create({
+export default StyleSheet.create({
     navigationContainer: {
         flexDirection: 'row',
         alignItems: 'center',

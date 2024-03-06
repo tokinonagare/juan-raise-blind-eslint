@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import SelectBlindsIntervalComponent from '../../select-blinds-Interval/controller/SelectBlindsIntervalComponent';
-import { ParentComponentStyle as styles } from './style/ParentComponentStyle';
+import styles from './style/ParentComponentStyle';
 
 const ParentComponent = ({ navigation }) => {
     const [TimeBasedRules, SetTimeBasedRules] = useState(null);

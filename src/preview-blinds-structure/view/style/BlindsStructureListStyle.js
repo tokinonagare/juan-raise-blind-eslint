@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Color from '../../../../lib/util/Color';
 
-export const BlindStructuresListStyle = StyleSheet.create({
+export default StyleSheet.create({
     tableCell: {
         flexDirection: 'row',
         paddingHorizontal: 10,

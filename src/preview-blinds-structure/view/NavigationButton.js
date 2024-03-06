@@ -1,6 +1,6 @@
 import { TouchableOpacity, Text } from 'react-native';
 import React from 'react';
-import { NavigationButtonStyles as styles } from './style/NavigationButtonStyles';
+import styles from './style/NavigationButtonStyles';
 
 const NavigationButton = (props) => {
     const { onPress } = props;

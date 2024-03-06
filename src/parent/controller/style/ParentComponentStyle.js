@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const ParentComponentStyle = StyleSheet.create({
+export default StyleSheet.create({
     homeComponent: {
         flexDirection: 'row',
     },

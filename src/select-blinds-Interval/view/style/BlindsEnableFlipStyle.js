@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import AppTheme from '../../../../lib/util/AppTheme';
 
-export const BlindsEnableFlipStyle = StyleSheet.create({
+export default StyleSheet.create({
     flipContainer: {
         flexDirection: 'row',
     },

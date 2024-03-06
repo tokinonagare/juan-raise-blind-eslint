@@ -56,6 +56,8 @@ const SelectBlindsIntervalComponent = ({
     const BlindsFlipProps = {
         flipState: isRaiseBlind,
         handleFlipChange,
+        seconds: raiseBlindInterval,
+        timeIsEnabled: isRaiseBlind,
     };
 
     const NavigationButtonProps = {
