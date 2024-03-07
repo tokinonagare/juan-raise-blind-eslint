@@ -77,7 +77,6 @@ const SelectBlindsIntervalComponent = ({
         formatLabel,
         showLabels: true,
     };
-
     return (
         <View style={styles.homeContainer}>
             <View>

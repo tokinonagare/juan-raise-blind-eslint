@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import SelectBlindsIntervalComponent from '../../select-blinds-Interval/controller/SelectBlindsIntervalComponent';
+import BlindStructurePopupComponent from '../../blinds-structure-popup/controller/BlindsStructurePopupComponent';
 import styles from './style/ParentComponentStyle';
 
 const ParentComponent = ({ navigation }) => {
@@ -13,7 +14,6 @@ const ParentComponent = ({ navigation }) => {
 
     const setRaiseBlindRules = (value) => {
         SetTimeBasedRules(value);
-        console.log(TimeBasedRules);
     };
 
     const setRaiseBlindEnable = (value) => {
@@ -44,10 +44,22 @@ const ParentComponent = ({ navigation }) => {
         navigation,
     };
 
+    useEffect(() => {
+        if (!isRaiseBlind) {
+            SetTimeBasedRules(null);
+        }
+    }, [isRaiseBlind]);
+
     return (
-        <View style={styles.homeComponent}>
-            <SelectBlindsIntervalComponent
-                {...SelectBlindsIntervalProps}
+        <View style={styles.homeComponentVertical}>
+            <View style={styles.homeComponentHorizontal}>
+                <SelectBlindsIntervalComponent
+                    {...SelectBlindsIntervalProps}
+                />
+            </View>
+            <BlindStructurePopupComponent
+                TimeBasedRules={TimeBasedRules}
+                CurrentLevel={8}
             />
         </View>
     );

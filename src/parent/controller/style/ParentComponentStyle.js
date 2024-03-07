@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    homeComponent: {
+    homeComponentHorizontal: {
         flexDirection: 'row',
+    },
+    homeComponentVertical: {
+        flexDirection: 'column',
     },
 });

@@ -5,7 +5,9 @@ import Color from '../../../lib/util/Color';
 import Localization from '../../../lib/localization/Localization';
 
 const BlindsEnableFlip = (props) => {
-    const { handleFlipChange, flipState, seconds, timeIsEnabled } = props;
+    const {
+        handleFlipChange, flipState, seconds, timeIsEnabled,
+    } = props;
 
     const minutes = Math.floor(seconds / 60);
     const displayMinutes = ` (${minutes}min)`;
