@@ -2,8 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     table: {
-        flexGrow: 1,
-        height: 500,
+        flex: 1,
     },
     tableCellOdd: {
         flexDirection: 'row',

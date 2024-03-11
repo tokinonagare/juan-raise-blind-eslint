@@ -1,3 +1,5 @@
+import RaiseblindItem from './RaiseBlindItem';
+
 const CreateTimeBasedRules = (data) => {
     const timeBasedRules = [];
     const { gameTime, raiseBlindInterval, smallBlind } = data;
@@ -12,14 +14,12 @@ const CreateTimeBasedRules = (data) => {
         const finalSmallBlind = baseBlind * smallBlind;
         const finalBigBlind = baseBlind * (smallBlind * 2);
 
-        const newItem = {
-            after_seconds: afterSeconds,
+        timeBasedRules.push(new RaiseblindItem({
+            afterSeconds,
             ante: level,
-            big_blind: finalBigBlind,
-            small_blind: finalSmallBlind,
-        };
-
-        timeBasedRules.push(newItem);
+            bigBlind: finalBigBlind,
+            smallBlind: finalSmallBlind,
+        }));
     }
     return timeBasedRules;
 };

@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import SelectBlindsIntervalComponent from '../../select-blinds-Interval/controller/SelectBlindsIntervalComponent';
 import BlindStructurePopupComponent from '../../blinds-structure-popup/controller/BlindsStructurePopupComponent';
 import styles from './style/ParentComponentStyle';
+import Localization from '../../../lib/laiwan_localization/laiwan_localization';
 
 const ParentComponent = ({ navigation }) => {
-    const [TimeBasedRules, SetTimeBasedRules] = useState(null);
+    const [timeBasedRules, setTimeBasedRules] = useState(null);
 
     const [bookingSecond] = useState(3600);
     const [smallBlind] = useState(1);
-    const [raiseBlindSeconds, SetRaiseBlindInterval] = useState(180);
+    const [raiseBlindSeconds, setRaiseBlindInterval] = useState(180);
     const [isRaiseBlind, SetRaiseBlindEnable] = useState(false);
 
-    const setRaiseBlindRules = (value) => {
-        SetTimeBasedRules(value);
+    const ref = React.createRef();
+
+    const SetRaiseBlindRules = (value) => {
+        setTimeBasedRules(value);
     };
 
     const setRaiseBlindEnable = (value) => {
         SetRaiseBlindEnable(value);
     };
 
-    const setRaiseBlindInterval = (value) => {
-        SetRaiseBlindInterval(value);
+    const SetRaiseBlindInterval = (value) => {
+        setRaiseBlindInterval(value);
     };
 
     let roomRule = {
@@ -29,9 +32,9 @@ const ParentComponent = ({ navigation }) => {
         smallBlind,
         raiseBlindSeconds,
         isRaiseBlind,
-        setRaiseBlindRules,
+        setRaiseBlindRules: SetRaiseBlindRules,
         setRaiseBlindEnable,
-        setRaiseBlindInterval,
+        setRaiseBlindInterval: SetRaiseBlindInterval,
     };
 
     const setRoomRule = (value) => {
@@ -46,7 +49,7 @@ const ParentComponent = ({ navigation }) => {
 
     useEffect(() => {
         if (!isRaiseBlind) {
-            SetTimeBasedRules(null);
+            setTimeBasedRules(null);
         }
     }, [isRaiseBlind]);
 
@@ -57,9 +60,14 @@ const ParentComponent = ({ navigation }) => {
                     {...SelectBlindsIntervalProps}
                 />
             </View>
+            <Button
+                title={Localization.translate('button_show_modal')}
+                onPress={() => ref.current.show()}
+            />
             <BlindStructurePopupComponent
-                TimeBasedRules={TimeBasedRules}
-                CurrentLevel={8}
+                timeBasedRules={timeBasedRules}
+                currentLevel={8}
+                ref={ref}
             />
         </View>
     );

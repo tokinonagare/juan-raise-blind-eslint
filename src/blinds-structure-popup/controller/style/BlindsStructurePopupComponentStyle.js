@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
-import { Device } from 'board_game_react_native';
+import Device from '../../../../lib/Device/board_game_react_native';
 
 export default StyleSheet.create({
     centeredView: {
@@ -14,6 +14,7 @@ export default StyleSheet.create({
         paddingHorizontal: 15,
         paddingBottom: 25,
         width: Device.width - 40,
+        height: 600,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -24,49 +25,21 @@ export default StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-    },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
-    textStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
-    },
     modalTitle: {
-        width: Device.width - 40,
         flexDirection: 'row',
         paddingVertical: 8,
-    },
-    modalTitleItem: {
-        alignItems: 'center',
-        flex: 1,
-    },
-    modalTitleTextContainer: {
-        flex: 3,
+        textAlign: 'center',
     },
     modalTitleText: {
         fontSize: 18,
         textAlign: 'center',
         color: 'white',
     },
-    modalCloseButtonContainer: {
-        alignItems: 'flex-end',
-        flex: 1,
-    },
     modalCloseButton: {
         width: 30,
+        position: 'absolute',
+        right: 10,
+        top: 8,
     },
     tableContainer: {
         flex: 1,

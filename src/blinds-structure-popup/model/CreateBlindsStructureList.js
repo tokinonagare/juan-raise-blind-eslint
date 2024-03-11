@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import BlindsStructureItem from './BlindsStructureItem';
 
 const CreateBlindStructureList = (data) => {
     const listData = Object.values(data);
@@ -8,24 +9,22 @@ const CreateBlindStructureList = (data) => {
     }
     for (let x = 0; x < listData.length; x += 1) {
         const {
-            after_seconds, ante, big_blind, small_blind,
+            afterSeconds, ante, bigBlind, smallBlind,
         } = listData[x];
 
-        let minute = Math.floor(after_seconds / 60);
-        let second = Math.floor(after_seconds % 60);
+        let minute = Math.floor(afterSeconds / 60);
+        let second = Math.floor(afterSeconds % 60);
 
         minute = minute.toString().length === 1 ? `0${minute}` : minute;
         second = second.toString().length === 1 ? `0${second}` : second;
 
         const time = `${minute.toString()}:${second.toString()}`;
 
-        const newItem = {
+        list.push(new BlindsStructureItem({
             user_level: `${ante}`,
             times: time,
-            blind_label: `${small_blind}/${big_blind}`,
-        };
-
-        list.push(newItem);
+            blind_label: `${smallBlind}/${bigBlind}`,
+        }));
     }
 
     return list;

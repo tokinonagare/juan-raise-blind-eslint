@@ -9,16 +9,17 @@ import {
     Modal,
     Text,
     Pressable,
+    TouchableWithoutFeedback,
 } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
-import { Localization } from 'laiwan_localization';
+import Localization from '../../../lib/laiwan_localization/laiwan_localization';
 import BlindsStructureList from '../view/BlindsStructureList';
 import styles from './style/BlindsStructurePopupComponentStyle';
 import CreateBlindStructureList from '../model/CreateBlindsStructureList';
 
 const BlindStructurePopupComponent = forwardRef(({
     timeBasedRules,
-    CurrentLevel,
+    currentLevel,
 }, ref) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [list, setList] = useState(null);
@@ -39,32 +40,33 @@ const BlindStructurePopupComponent = forwardRef(({
             visible={modalVisible}
             onRequestClose={() => setModalVisible(false)}
         >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <View style={styles.modalTitle}>
-                        <View style={styles.modalTitleItem}/>
-                        <View style={styles.modalTitleTextContainer}>
-                            <Text style={styles.modalTitleText}>
-                                {Localization.translate('raise_blind_detail')}
-                            </Text>
-                        </View>
-                        <View style={styles.modalCloseButtonContainer}>
+            <TouchableWithoutFeedback
+                onPress={() => setModalVisible(false)}
+            >
+                <View style={styles.centeredView}>
+                    <TouchableWithoutFeedback>
+                        <View style={styles.modalView}>
+                            <View style={styles.modalTitle}>
+                                <Text style={styles.modalTitleText}>
+                                    {Localization.translate('raise_blind_detail')}
+                                </Text>
+                            </View>
                             <Pressable
                                 style={styles.modalCloseButton}
                                 onPress={() => setModalVisible(false)}
                             >
                                 <Text style={styles.modalTitleText}>✕</Text>
                             </Pressable>
+                            <View style={styles.tableContainer}>
+                                <BlindsStructureList
+                                    timeBasedRules={list}
+                                    currentLevel={currentLevel}
+                                />
+                            </View>
                         </View>
-                    </View>
-                    <View style={styles.tableContainer}>
-                        <BlindsStructureList
-                            TimeBasedRules={list}
-                            CurrentLevel={CurrentLevel}
-                        />
-                    </View>
+                    </TouchableWithoutFeedback>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         </Modal>
     );
 });

@@ -1,7 +1,13 @@
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import {
+    FlatList,
+    Text,
+    View,
+    ScrollView,
+} from 'react-native';
 import styles from './style/BlindsStructureListStyle';
 import Localization from '../../../lib/localization/Localization';
+import { RowItemStyle, HeaderStyle } from '../model/StyleListItems';
 
 const DynamicTable = ({ data }) => {
     const renderItem = ({ item }) => (
@@ -9,14 +15,7 @@ const DynamicTable = ({ data }) => {
             {Object.entries(item).map(([key, value], index) => (
                 <Text
                     key={key}
-                    style={
-                        (() => {
-                            if (index === 0) return styles.tableLeft;
-                            if (index === 1) return styles.tableCentre;
-                            if (index === 2) return styles.tableRight;
-                            return styles.tableLeft;
-                        })()
-                    }
+                    style={RowItemStyle(index, styles)}
                 >
                     {value}
                 </Text>
@@ -29,14 +28,7 @@ const DynamicTable = ({ data }) => {
             {Object.keys(data[0]).map((key, index) => (
                 <Text
                     key={key}
-                    style={
-                        (() => {
-                            if (index === 0) return styles.tableLeft;
-                            if (index === 1) return styles.tableCentre;
-                            if (index === 2) return styles.tableRight;
-                            return styles.tableLeft;
-                        })()
-                    }
+                    style={HeaderStyle(index, styles)}
                 >
                     {Localization.translate(key)}
                 </Text>
@@ -45,12 +37,18 @@ const DynamicTable = ({ data }) => {
     );
 
     return (
-        <FlatList
-            data={data}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()}
-            ListHeaderComponent={header}
-        />
+        <ScrollView
+            bounces={false}
+            alwaysBounceVertical={false}
+        >
+            <FlatList
+                scrollEnabled={false}
+                data={data}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+                ListHeaderComponent={header}
+            />
+        </ScrollView>
     );
 };
 
