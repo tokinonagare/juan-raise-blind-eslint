@@ -1,3 +1,5 @@
+import BlindsStructureItem from './BlindsStructureItem';
+
 const CreateBlindStructureList = (data) => {
     const list = [];
     const { gameTime, raiseBlindInterval, smallBlind } = data;
@@ -17,13 +19,11 @@ const CreateBlindStructureList = (data) => {
         const blind2 = baseBlind * (smallBlind * 2);
         const blinds = `${blind1}/${blind2}`;
 
-        const newItem = {
+        list.push(new BlindsStructureItem({
             user_level: level,
             times: time,
             blind_label: blinds,
-        };
-
-        list.push(newItem);
+        }));
     }
 
     const minute = Math.floor(raiseBlindInterval / 60);
