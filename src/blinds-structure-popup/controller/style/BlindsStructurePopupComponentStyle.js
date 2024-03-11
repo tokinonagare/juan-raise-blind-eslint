@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import Color from '../../../../lib/util/Color';
+// eslint-disable-next-line import/no-unresolved
+import { Device } from 'board_game_react_native';
 
 export default StyleSheet.create({
     centeredView: {
@@ -12,6 +13,7 @@ export default StyleSheet.create({
         backgroundColor: '#0f121e',
         paddingHorizontal: 15,
         paddingBottom: 25,
+        width: Device.width - 40,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -43,6 +45,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     modalTitle: {
+        width: Device.width - 40,
         flexDirection: 'row',
         paddingVertical: 8,
     },
@@ -56,7 +59,7 @@ export default StyleSheet.create({
     modalTitleText: {
         fontSize: 18,
         textAlign: 'center',
-        color: Color.white,
+        color: 'white',
     },
     modalCloseButtonContainer: {
         alignItems: 'flex-end',
