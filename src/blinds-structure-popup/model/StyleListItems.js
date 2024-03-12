@@ -10,8 +10,8 @@ export const ItemRowStyle = (currentColumn, currentItem, currentLevel, styles) =
     return styles.tableLeft;
 };
 
-export const RenderCurrentValue = (renderItemIndex, currentLevel, value) => {
-    if (renderItemIndex + 1 === currentLevel && renderItemIndex === 0) return `${value} Current Level`;
+export const RenderCurrentValue = (currentItem, currentLevel, value) => {
+    if (currentItem + 1 === currentLevel && currentItem === 0) return `${value} Current Level`;
     return value;
 };
 
