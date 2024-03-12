@@ -12,10 +12,10 @@ import { RowItemStyle, HeaderStyle } from '../model/StyleListItems';
 const DynamicTable = ({ data }) => {
     const renderItem = ({ item }) => (
         <View style={styles.tableCell}>
-            {Object.entries(item).map(([key, value], index) => (
+            {Object.entries(item).map(([key, value], currentColumn) => (
                 <Text
                     key={key}
-                    style={RowItemStyle(index, styles)}
+                    style={RowItemStyle(currentColumn, styles)}
                 >
                     {value}
                 </Text>
@@ -25,10 +25,10 @@ const DynamicTable = ({ data }) => {
 
     const header = (
         <View style={styles.tableCellHeader}>
-            {Object.keys(data[0]).map((key, index) => (
+            {Object.keys(data[0]).map((key, currentColumn) => (
                 <Text
                     key={key}
-                    style={HeaderStyle(index, styles)}
+                    style={HeaderStyle(currentColumn, styles)}
                 >
                     {Localization.translate(key)}
                 </Text>

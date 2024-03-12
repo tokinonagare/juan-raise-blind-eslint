@@ -20,9 +20,9 @@ const CreateBlindStructureList = (data) => {
         const blinds = `${blind1}/${blind2}`;
 
         list.push(new BlindsStructureItem({
-            user_level: level,
+            userLevel: level,
             times: time,
-            blind_label: blinds,
+            blindLabel: blinds,
         }));
     }
 

@@ -17,17 +17,17 @@ const BlindsStructureList = ({
 }) => {
     const renderItem = ({
         item,
-        index: index1,
+        index: currentItem,
     }) => (
         <TouchableWithoutFeedback>
-            <View style={AlternatingBackgroundStyle(index1, styles)}>
+            <View style={AlternatingBackgroundStyle(currentItem, styles)}>
                 {Object.entries(item)
-                    .map(([key, value], index) => (
+                    .map(([key, value], currentColumn) => (
                         <Text
                             key={key}
-                            style={ItemRowStyle(index, index1, currentLevel, styles)}
+                            style={ItemRowStyle(currentColumn, currentItem, currentLevel, styles)}
                         >
-                            {RenderCurrentValue(index1, currentLevel, value)}
+                            {RenderCurrentValue(currentItem, currentLevel, value)}
                         </Text>
                     ))}
             </View>

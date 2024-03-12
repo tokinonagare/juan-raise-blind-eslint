@@ -21,9 +21,9 @@ const CreateBlindStructureList = (data) => {
         const time = `${minute.toString()}:${second.toString()}`;
 
         list.push(new BlindsStructureItem({
-            user_level: `${ante}`,
+            userLevel: `${ante}`,
             times: time,
-            blind_label: `${smallBlind}/${bigBlind}`,
+            blindLabel: `${smallBlind}/${bigBlind}`,
         }));
     }
 
