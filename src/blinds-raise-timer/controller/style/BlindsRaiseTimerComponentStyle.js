@@ -24,10 +24,19 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    wideColumn: {
-        flex: 2,
+    nextBlind: {
         flexDirection: 'row',
         justifyContent: 'center',
+    },
+    nextBlindLabel: {
+        flexDirection: 'row',
+        paddingRight: 10,
+        justifyContent: 'flex-end',
+    },
+    intervalLabel: {
+        flexDirection: 'row',
+        paddingLeft: 10,
+        justifyContent: 'flex-start',
     },
     iconContainer: {
         flexDirection: 'column',

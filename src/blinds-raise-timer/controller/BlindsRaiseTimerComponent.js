@@ -49,16 +49,16 @@ const BlindRaiseTimer = (props) => {
             {blindIsRaised
                 ? (
                     <View style={styles.bottomRow}>
-                        <View style={styles.wideColumn}>
+                        <View style={styles.nextBlindLabel}>
                             <View style={styles.iconContainer}>
                                 <Image source={upgradeIcon}/>
                             </View>
                             <Text numberOfLines={1} style={styles.centerText}>Next Blinds</Text>
                         </View>
-                        <View style={styles.wideColumn}>
+                        <View style={styles.nextBlind}>
                             <Text style={styles.centerText}>{`${nextBlinds}`}</Text>
                         </View>
-                        <View style={styles.rowColumn}>
+                        <View style={styles.intervalLabel}>
                             <Text style={styles.centerText}>{`${timeInterval / 60}m`}</Text>
                         </View>
                     </View>
