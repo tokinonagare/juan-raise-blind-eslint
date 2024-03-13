@@ -1,7 +1,8 @@
 export default class BlindsStructureItem {
     constructor(props) {
-        this.userLevel = props.userLevel;
-        this.times = props.times;
-        this.blindLabel = props.blindLabel;
+        this.afterSeconds = props.after_seconds;
+        this.ante = props.ante;
+        this.smallBlind = props.small_blind;
+        this.bigBlind = props.big_blind;
     }
 }

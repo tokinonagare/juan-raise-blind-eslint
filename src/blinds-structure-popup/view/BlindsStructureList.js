@@ -38,7 +38,7 @@ const BlindsStructureList = ({
         <TouchableWithoutFeedback>
             <View style={styles.tableCellHeader}>
                 <Text style={styles.tableHeaderLeft}>{Localization.translate('user_level')}</Text>
-                <Text style={styles.tableHeaderCentre}>{Localization.translate('times')}</Text>
+                <Text style={styles.tableHeaderCentre}>{Localization.translate('time_text')}</Text>
                 <Text style={styles.tableHeaderRight}>{Localization.translate('blind_label')}</Text>
             </View>
         </TouchableWithoutFeedback>
