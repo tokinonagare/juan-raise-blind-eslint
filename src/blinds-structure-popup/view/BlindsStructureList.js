@@ -27,7 +27,7 @@ const BlindsStructureList = ({
                             key={key}
                             style={ItemRowStyle(currentColumn, currentItem, currentLevel, styles)}
                         >
-                            {RenderCurrentValue(currentItem, currentLevel, value)}
+                            {RenderCurrentValue(currentItem, currentLevel, currentColumn, value)}
                         </Text>
                     ))}
             </View>
