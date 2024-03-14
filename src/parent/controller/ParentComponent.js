@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
     View,
     Button,
-    Slider,
     Text,
     Switch,
 } from 'react-native';
@@ -11,7 +10,6 @@ import BlindStructurePopupComponent from '../../blinds-structure-popup/controlle
 import BlindRaiseTimer from '../../blinds-raise-timer/controller/BlindsRaiseTimerComponent';
 import styles from './style/ParentComponentStyle';
 import Localization from '../../../lib/laiwan_localization/laiwan_localization';
-import GetCurrentLevel from '../model/GetCurrentLevel';
 
 const gameTime = 3600;
 
@@ -21,48 +19,24 @@ const ParentComponent = ({ navigation }) => {
     const [bookingSecond] = useState(gameTime);
     const [smallBlind] = useState(1);
     const [raiseBlindSeconds, setRaiseBlindInterval] = useState(180);
-    const [isRaiseBlind, SetRaiseBlindEnable] = useState(false);
+    const [isRaiseBlind, SetRaiseBlindEnable] = useState(true);
+    const [roomState, setRoomState] = useState('notRunning');
+    const [roomStateEnable, setRoomStateEnable] = useState(false);
 
-    const [currency, setCurrency] = useState('coin');
-    const [currencyState, setCurrencyState] = useState(false);
-    const [currentBlinds, setCurrentBlinds] = useState('1/2');
-    const [countdownSeconds, setCountdownSeconds] = useState(gameTime);
-    const [nextBlinds, setNextBlinds] = useState('2/4');
-
-    const [currentLevel, setCurrentLevel] = useState(1);
+    const [remainSeconds] = useState(bookingSecond);
 
     const ref = React.createRef();
 
-    const SetCurrency = (value) => {
-        if (!value) {
-            setCurrency('coin');
-            setCurrencyState(value);
-        } else {
-            setCurrency('chip');
-            setCurrencyState(value);
-        }
-    };
-
-    const UpdateTimer = (seconds) => {
-        setCountdownSeconds(seconds);
-        if (timeBasedRules != null) {
-            const currentLevelData = GetCurrentLevel(timeBasedRules, bookingSecond, seconds);
-            setCurrentBlinds(currentLevelData.currentLevel.blinds);
-            setNextBlinds(currentLevelData.nextLevel);
-            setCurrentLevel(currentLevelData.currentLevel.level);
-        }
-    };
-
     const SetRaiseBlindRules = (value) => {
-        setTimeBasedRules(value, UpdateTimer(countdownSeconds));
+        setTimeBasedRules(value);
     };
 
     const setRaiseBlindEnable = (value) => {
-        SetRaiseBlindEnable(value, UpdateTimer(countdownSeconds));
+        SetRaiseBlindEnable(value);
     };
 
     const SetRaiseBlindInterval = (value) => {
-        setRaiseBlindInterval(value, UpdateTimer(countdownSeconds));
+        setRaiseBlindInterval(value);
     };
 
     let roomRule = {
@@ -88,15 +62,8 @@ const ParentComponent = ({ navigation }) => {
     useEffect(() => {
         if (!isRaiseBlind) {
             setTimeBasedRules(null);
-            setCurrentBlinds('1/2');
         }
     }, [isRaiseBlind]);
-
-    useEffect(() => {
-        if (timeBasedRules != null) {
-            UpdateTimer(countdownSeconds);
-        }
-    }, [timeBasedRules]);
 
     return (
         <View style={styles.homeComponentVertical}>
@@ -111,35 +78,30 @@ const ParentComponent = ({ navigation }) => {
             />
             <BlindStructurePopupComponent
                 timeBasedRules={timeBasedRules}
-                currentLevel={currentLevel}
+                currentLevel={8}
                 ref={ref}
             />
             <View>
                 <BlindRaiseTimer
-                    countdownSeconds={countdownSeconds}
-                    currency={currency}
-                    blindIsRaised={isRaiseBlind}
-                    nextBlinds={nextBlinds}
-                    currentBlinds={currentBlinds}
-                    timeInterval={raiseBlindSeconds}
-                    ref={ref}
+                    remainSeconds={remainSeconds}
+                    roomState={roomState}
+                    raiseBlinds={timeBasedRules}
                 />
             </View>
             <View style={styles.viewContainer}>
-                <Text>{`Set remaining seconds: ${countdownSeconds}s`}</Text>
-                <Slider
-                    maximumValue={gameTime}
-                    minimumValue={0}
-                    step={1}
-                    value={countdownSeconds}
-                    onValueChange={(value) => UpdateTimer(value)}
-                    style={styles.slider}
-                />
-                <Text>{`Set currency: ${currency}`}</Text>
+                <Text>{`roomState: ${roomState}`}</Text>
                 <View style={styles.switch}>
                     <Switch
-                        value={currencyState}
-                        onValueChange={(value) => SetCurrency(value)}
+                        value={roomStateEnable}
+                        onValueChange={(value) => {
+                            if (value) {
+                                setRoomState('running');
+                                setRoomStateEnable(true);
+                            } else {
+                                setRoomState('notRunning');
+                                setRoomStateEnable(false);
+                            }
+                        }}
                     />
                 </View>
             </View>

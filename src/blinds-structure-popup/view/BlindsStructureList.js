@@ -37,9 +37,9 @@ const BlindsStructureList = ({
     const header = (
         <TouchableWithoutFeedback>
             <View style={styles.tableCellHeader}>
-                <Text style={styles.tableHeaderLeft}>{Localization.translate('user_level')}</Text>
-                <Text style={styles.tableHeaderCentre}>{Localization.translate('time_text')}</Text>
-                <Text style={styles.tableHeaderRight}>{Localization.translate('blind_label')}</Text>
+                <Text style={styles.tableHeaderLeft}>{Localization.translate('userLevel')}</Text>
+                <Text style={styles.tableHeaderCentre}>{Localization.translate('timeText')}</Text>
+                <Text style={styles.tableHeaderRight}>{Localization.translate('blindLabel')}</Text>
             </View>
         </TouchableWithoutFeedback>
     );

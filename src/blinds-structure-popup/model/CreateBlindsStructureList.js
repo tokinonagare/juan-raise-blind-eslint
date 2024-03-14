@@ -23,7 +23,7 @@ const CreateBlindStructureList = (data) => {
 
         list.push({
             userLevel: `${ante}`,
-            time: `${minute.toString()}:${second.toString()}`,
+            timeText: `${minute.toString()}:${second.toString()}`,
             blindLabel: `${smallBlind}/${bigBlind}`,
         });
     }

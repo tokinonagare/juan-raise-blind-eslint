@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import styles from './style/SelectBlindsIntervalComponentStyle';
 import NavigationButton from '../view/NavigationButton';
@@ -77,6 +77,16 @@ const SelectBlindsIntervalComponent = ({
         formatLabel,
         showLabels: true,
     };
+
+    useEffect(() => {
+        const raiseBlindRules = CreateTimeBasedRules({
+            gameTime,
+            raiseBlindInterval,
+            smallBlind,
+        });
+        roomRule.setRaiseBlindRules(raiseBlindRules);
+    }, [roomRule.isRaiseBlind]);
+
     return (
         <View style={styles.homeContainer}>
             <View>

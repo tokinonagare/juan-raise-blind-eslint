@@ -19,8 +19,13 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    rowColumn: {
-        flex: 1,
+    currentBlind: {
+        marginRight: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    timer: {
+        marginLeft: 10,
         flexDirection: 'row',
         justifyContent: 'center',
     },
