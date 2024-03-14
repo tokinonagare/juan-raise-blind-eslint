@@ -1,8 +1,8 @@
 import RaiseblindItem from './RaiseBlindItem';
 
-const CreateTimeBasedRules = (data) => {
+const CreateTimeBasedRules = (raiseBlindData) => {
     const timeBasedRules = [];
-    const { gameTime, raiseBlindInterval, smallBlind } = data;
+    const { gameTime, raiseBlindInterval, smallBlind } = raiseBlindData;
 
     const maxLevel = Math.floor(gameTime / raiseBlindInterval);
     for (let x = 0; x < maxLevel; x += 1) {

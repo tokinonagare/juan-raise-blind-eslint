@@ -1,7 +1,7 @@
 import BlindsStructureItem from './BlindsStructureItem';
 
-const CreateBlindStructureList = (data) => {
-    const listData = Object.values(data);
+const CreateBlindStructureList = (timeBasedRules) => {
+    const listData = Object.values(timeBasedRules);
     const list = [];
     if (listData == null || listData === '') {
         return list;

@@ -9,23 +9,8 @@ export default StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#39A070',
     },
-    topRow: {
-        marginHorizontal: 35,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    bottomRow: {
+    row: {
         marginHorizontal: 10,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    currentBlind: {
-        marginRight: 10,
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    timer: {
-        marginLeft: 10,
         flexDirection: 'row',
         justifyContent: 'center',
     },
