@@ -13,6 +13,7 @@ const BlindRaiseTimer = ({
     remainSeconds,
     roomState,
     raiseBlinds,
+    gameTime,
 }) => {
     const [timeInterval, setTimeInterval] = useState(GetTimeInterval(raiseBlinds));
 
@@ -22,7 +23,7 @@ const BlindRaiseTimer = ({
 
     const updateBlinds = () => {
         if (raiseBlinds != null) {
-            const currentLevelData = GetCurrentLevel(raiseBlinds, CountdownSeconds);
+            const currentLevelData = GetCurrentLevel(raiseBlinds, gameTime, CountdownSeconds);
             setNextBlinds(FormatBlind(currentLevelData));
         }
     };

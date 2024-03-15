@@ -1,7 +1,6 @@
 import BlindsStructureItem from './BlindsStructureItem';
 
-function GetCurrentLevel(timeBasedRules, currentTime) {
-    const gameTime = timeBasedRules[1].afterSeconds + timeBasedRules[timeBasedRules.length - 1].afterSeconds;
+function GetCurrentLevel(timeBasedRules, gameTime, currentTime) {
     const levelTime = Math.abs(currentTime - gameTime);
 
     const timeBasedRulesIndexSize = timeBasedRules.length;
