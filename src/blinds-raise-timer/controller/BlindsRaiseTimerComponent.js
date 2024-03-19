@@ -63,9 +63,6 @@ const BlindRaiseTimer = ({
                         <View style={styles.intervalLabel}>
                             <Text style={styles.centerText}>{`${timeInterval}m`}</Text>
                         </View>
-                        <View>
-                            <Text>{countdownSeconds}</Text>
-                        </View>
                     </View>
                 )
                 : <View/> }
