@@ -5,7 +5,7 @@ const roomTimer = (gameTimeSeconds, roomState) => {
 
     useEffect(() => {
         const id = setTimeout(() => {
-            if (roomState === 'running' && timeSecondsLeft > 0) {
+            if (String(roomState).toLowerCase() === 'running' && timeSecondsLeft > 0) {
                 setTimeSecondsLeft((previous) => previous - 1);
             }
         }, 1000);

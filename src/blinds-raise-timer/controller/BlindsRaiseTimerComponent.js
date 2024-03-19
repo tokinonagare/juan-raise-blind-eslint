@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './style/BlindsRaiseTimerComponentStyle';
-import GetCurrentLevel from '../model/GetCurrentLevel';
+import GetNextBlind from '../model/GetNextBlind';
 import roomTimer from '../model/timerComponent';
 import Localization from '../../../lib/localization/Localization';
 import FormatBlind from '../model/FormatBlindDisplay';
@@ -17,14 +17,14 @@ const BlindRaiseTimer = ({
 }) => {
     const [timeInterval, setTimeInterval] = useState(GetTimeInterval(raiseBlinds));
 
-    const CountdownSeconds = roomTimer(remainSeconds, roomState);
+    const countdownSeconds = roomTimer(remainSeconds, roomState);
 
     const [nextBlinds, setNextBlinds] = useState('');
 
     const updateBlinds = () => {
         if (raiseBlinds != null) {
-            const currentLevelData = GetCurrentLevel(raiseBlinds, gameTime, CountdownSeconds);
-            setNextBlinds(FormatBlind(currentLevelData));
+            const nextBlindData = GetNextBlind(raiseBlinds, gameTime, countdownSeconds, timeInterval * 60);
+            setNextBlinds(FormatBlind(nextBlindData));
         }
     };
 
@@ -37,7 +37,7 @@ const BlindRaiseTimer = ({
             return;
         }
         updateBlinds();
-    }, [CountdownSeconds]);
+    }, [countdownSeconds]);
 
     useEffect(() => {
         updateBlinds();
@@ -53,7 +53,7 @@ const BlindRaiseTimer = ({
                             <View style={styles.iconContainer}>
                                 <Image source={upgradeIcon}/>
                             </View>
-                            <Text numberOfLines={1} style={styles.centerText}>
+                            <Text style={styles.centerText}>
                                 {Localization.translate('nextBlinds')}
                             </Text>
                         </View>
@@ -62,6 +62,9 @@ const BlindRaiseTimer = ({
                         </View>
                         <View style={styles.intervalLabel}>
                             <Text style={styles.centerText}>{`${timeInterval}m`}</Text>
+                        </View>
+                        <View>
+                            <Text>{countdownSeconds}</Text>
                         </View>
                     </View>
                 )
