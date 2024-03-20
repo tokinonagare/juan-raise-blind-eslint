@@ -34,6 +34,17 @@ const CreateBlindStructureList = (data) => {
         T500: 3000,
     };
 
+    // To which chip denomination should the ante be
+    // rounded off to upon reaching a specific milestone.
+    const anteChipColorUpMilestones = {
+        T1: 5,
+        T5: 10,
+        T10: 25,
+        T25: 100,
+        T100: 1000,
+        T500: 3000,
+    };
+
     // By how much should each level raise the blinds.
     // To get the blind raise multiplier:
     //    Get the estimated big blind of the final level by:
@@ -52,6 +63,9 @@ const CreateBlindStructureList = (data) => {
 
     // Keeps the current small blind
     let currentSmallBlind = startBlind;
+
+    let ante = null;
+    let anteChip = startBlind;
 
     // Loop through each level
     for (let currentLevel = 1; currentLevel <= numberOfLevels; currentLevel += 1) {
@@ -84,6 +98,31 @@ const CreateBlindStructureList = (data) => {
                 chip = 1000;
             }
 
+            if (chip < startBlind) {
+                chip = startBlind;
+            }
+
+            if (ante >= 0 && currentSmallBlind < chipColorUpMilestones.T1) {
+                anteChip = 1;
+            } else if (ante >= anteChipColorUpMilestones.T1
+            && currentSmallBlind < anteChipColorUpMilestones.T5) {
+                anteChip = 5;
+            } else if (ante >= anteChipColorUpMilestones.T5
+            && currentSmallBlind < anteChipColorUpMilestones.T10) {
+                anteChip = 10;
+            } else if (ante >= anteChipColorUpMilestones.T10
+            && currentSmallBlind < anteChipColorUpMilestones.T25) {
+                anteChip = 25;
+            } else if (ante >= anteChipColorUpMilestones.T25
+            && currentSmallBlind < anteChipColorUpMilestones.T100) {
+                anteChip = 100;
+            } else if (ante >= anteChipColorUpMilestones.T100
+            && currentSmallBlind < anteChipColorUpMilestones.T500) {
+                anteChip = 500;
+            } else if (ante >= 3000) {
+                anteChip = 1000;
+            }
+
             // To get the next small blind value:
             //   Multiply the last small blind with the raise multiplier to get
             //   the next small blind value. Divide the result to the amount of
@@ -99,6 +138,11 @@ const CreateBlindStructureList = (data) => {
             // Save the current small blind to the last small blind variable
             // for the next loop to use.
             lastSmallBlind = currentSmallBlind;
+
+            // Ante is about 1/4 of the small blind rounded down by the smallest
+            // available denomination.
+            ante = Math.floor((currentSmallBlind / 4) / anteChip) * anteChip;
+            ante = ante === 0 ? null : ante;
         }
         /*
         Blind structure logic references:
