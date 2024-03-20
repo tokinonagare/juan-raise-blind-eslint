@@ -6,7 +6,9 @@ import roomTimer from '../model/timerComponent';
 import Localization from '../../../lib/localization/Localization';
 import FormatBlind from '../model/FormatBlindDisplay';
 import GetTimeInterval from '../model/GetTimeInterval';
+import formatTime from '../model/timeFormatter';
 
+const chipIcon = require('../../../lib/Icons/resources/icon_blind_counter.png');
 const upgradeIcon = require('../../../lib/Icons/resources/icon_blind_chip_upgrade.png');
 
 const BlindRaiseTimer = ({
@@ -16,15 +18,18 @@ const BlindRaiseTimer = ({
     gameTime,
 }) => {
     const [timeInterval, setTimeInterval] = useState(GetTimeInterval(raiseBlinds));
+    const [currencyIcon] = useState(chipIcon);
 
     const countdownSeconds = roomTimer(remainSeconds, roomState);
 
     const [nextBlinds, setNextBlinds] = useState('');
+    const [currentBlinds, setCurrentBlinds] = useState('');
 
     const updateBlinds = () => {
         if (raiseBlinds != null) {
             const nextBlindData = GetNextBlind(raiseBlinds, gameTime, countdownSeconds, timeInterval * 60);
-            setNextBlinds(FormatBlind(nextBlindData));
+            setNextBlinds(FormatBlind(nextBlindData.nextBlind));
+            setCurrentBlinds(FormatBlind(nextBlindData.currentBlind));
         }
     };
 
@@ -48,20 +53,37 @@ const BlindRaiseTimer = ({
         <View style={styles.parentView}>
             {roomState === 'running'
                 ? (
-                    <View style={styles.row}>
-                        <View style={styles.nextBlindLabel}>
-                            <View style={styles.iconContainer}>
-                                <Image source={upgradeIcon}/>
+                    <View style={styles.columnView}>
+                        <View style={styles.row}>
+                            <View style={styles.currentBlind}>
+                                <View style={styles.iconContainer}>
+                                    <Image source={currencyIcon}/>
+                                </View>
+                                <Text style={styles.centerText}>
+                                    {currentBlinds}
+                                </Text>
                             </View>
-                            <Text style={styles.centerText}>
-                                {Localization.translate('nextBlinds')}
-                            </Text>
+                            <View style={styles.timerLabel}>
+                                <Text style={styles.centerText}>
+                                    {formatTime(countdownSeconds)}
+                                </Text>
+                            </View>
                         </View>
-                        <View style={styles.nextBlind}>
-                            <Text style={styles.centerText}>{nextBlinds}</Text>
-                        </View>
-                        <View style={styles.intervalLabel}>
-                            <Text style={styles.centerText}>{`${timeInterval}m`}</Text>
+                        <View style={styles.row}>
+                            <View style={styles.nextBlindLabel}>
+                                <View style={styles.iconContainer}>
+                                    <Image source={upgradeIcon}/>
+                                </View>
+                                <Text style={styles.centerText}>
+                                    {Localization.translate('nextBlinds')}
+                                </Text>
+                            </View>
+                            <View style={styles.nextBlind}>
+                                <Text style={styles.centerText}>{nextBlinds}</Text>
+                            </View>
+                            <View style={styles.intervalLabel}>
+                                <Text style={styles.centerText}>{`${timeInterval}m`}</Text>
+                            </View>
                         </View>
                     </View>
                 )

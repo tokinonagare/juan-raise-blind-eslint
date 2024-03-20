@@ -10,17 +10,41 @@ function GetNextBlind(timeBasedRules, gameTime, currentTime, timeInterval) {
     // Get the number of levels.
     const timeBasedRulesIndexSize = timeBasedRules.length;
 
-    let nextBlind = null;
+    let blindData = {
+        nextBlind: null,
+        currentBlind: null,
+    };
 
     if (currentLevel + 1 < timeBasedRulesIndexSize) {
         // If the level is not the last level, get the next level's data.
-        nextBlind = new BlindsStructureItem(timeBasedRules[currentLevel + 1]);
+        blindData = {
+            nextBlind: new BlindsStructureItem(timeBasedRules[currentLevel + 1]),
+            currentBlind: new BlindsStructureItem(timeBasedRules[currentLevel]),
+        };
     } else if (currentLevel + 1 === timeBasedRulesIndexSize) {
         // If the level is the last level, get the current level's data.
-        nextBlind = new BlindsStructureItem(timeBasedRules[currentLevel]);
+        blindData = {
+            nextBlind: new BlindsStructureItem({
+                afterSeconds: null,
+                ante: null,
+                smallBlind: ' - ',
+                bigBlind: ' - ',
+            }),
+            currentBlind: new BlindsStructureItem(timeBasedRules[currentLevel]),
+        };
+    } else if (currentLevel + 1 > timeBasedRulesIndexSize) {
+        blindData = {
+            nextBlind: new BlindsStructureItem({
+                afterSeconds: null,
+                ante: null,
+                smallBlind: ' - ',
+                bigBlind: ' - ',
+            }),
+            currentBlind: new BlindsStructureItem(timeBasedRules[timeBasedRulesIndexSize - 1]),
+        };
     }
 
-    return nextBlind;
+    return blindData;
 }
 
 export default GetNextBlind;

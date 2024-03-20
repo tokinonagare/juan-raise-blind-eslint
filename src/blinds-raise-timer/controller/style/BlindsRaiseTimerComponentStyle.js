@@ -9,10 +9,24 @@ export default StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#39A070',
     },
+    columnView: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
     row: {
         marginHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'center',
+    },
+    currentBlind: {
+        flexDirection: 'row',
+        paddingRight: 5,
+        justifyContent: 'flex-end',
+    },
+    timerLabel: {
+        flexDirection: 'row',
+        paddingLeft: 5,
+        justifyContent: 'flex-start',
     },
     nextBlind: {
         flexDirection: 'row',
