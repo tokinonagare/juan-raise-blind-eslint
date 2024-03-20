@@ -114,7 +114,7 @@ const CreateTimeBasedRules = (raiseBlindData) => {
 
         timeBasedRules.push(new RaiseblindItem({
             afterSeconds,
-            ante: currentLevel,
+            ante: bigBlind,
             bigBlind,
             smallBlind: currentSmallBlind,
         }));

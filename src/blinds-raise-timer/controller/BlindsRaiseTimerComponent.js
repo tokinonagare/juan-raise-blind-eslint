@@ -7,8 +7,10 @@ import Localization from '../../../lib/localization/Localization';
 import FormatBlind from '../model/FormatBlindDisplay';
 import GetTimeInterval from '../model/GetTimeInterval';
 import formatTime from '../model/timeFormatter';
+import secondsToMinutes from '../model/timeConverter';
 
 const chipIcon = require('../../../lib/Icons/resources/icon_blind_counter.png');
+const goldIcon = require('../../../lib/Icons/resources/icon_blind_gold.png');
 const upgradeIcon = require('../../../lib/Icons/resources/icon_blind_chip_upgrade.png');
 
 const BlindRaiseTimer = ({
@@ -16,9 +18,10 @@ const BlindRaiseTimer = ({
     roomState,
     raiseBlinds,
     gameTime,
+    currency = 'chip',
 }) => {
     const [timeInterval, setTimeInterval] = useState(GetTimeInterval(raiseBlinds));
-    const [currencyIcon] = useState(chipIcon);
+    const [currencyIcon] = useState(currency === 'chip' ? chipIcon : goldIcon);
 
     const countdownSeconds = roomTimer(remainSeconds, roomState);
 
@@ -27,7 +30,7 @@ const BlindRaiseTimer = ({
 
     const updateBlinds = () => {
         if (raiseBlinds != null) {
-            const nextBlindData = GetNextBlind(raiseBlinds, gameTime, countdownSeconds, timeInterval * 60);
+            const nextBlindData = GetNextBlind(raiseBlinds, gameTime, countdownSeconds, timeInterval);
             setNextBlinds(FormatBlind(nextBlindData.nextBlind));
             setCurrentBlinds(FormatBlind(nextBlindData.currentBlind));
         }
@@ -75,14 +78,14 @@ const BlindRaiseTimer = ({
                                     <Image source={upgradeIcon}/>
                                 </View>
                                 <Text style={styles.centerText}>
-                                    {Localization.translate('nextBlinds')}
+                                    {Localization.translate('next_blinds')}
                                 </Text>
                             </View>
                             <View style={styles.nextBlind}>
                                 <Text style={styles.centerText}>{nextBlinds}</Text>
                             </View>
                             <View style={styles.intervalLabel}>
-                                <Text style={styles.centerText}>{`${timeInterval}m`}</Text>
+                                <Text style={styles.centerText}>{`${secondsToMinutes(timeInterval)}m`}</Text>
                             </View>
                         </View>
                     </View>

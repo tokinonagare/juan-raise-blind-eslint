@@ -87,6 +87,7 @@ const ParentComponent = ({ navigation }) => {
                     roomState={roomState}
                     raiseBlinds={timeBasedRules}
                     gameTime={bookingSecond}
+                    currency="chip"
                 />
             </View>
             <View style={styles.viewContainer}>

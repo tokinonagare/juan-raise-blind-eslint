@@ -10,7 +10,6 @@ const CreateBlindStructureList = (timeBasedRules) => {
         const blindStructureItem = new BlindsStructureItem(listData[x]);
         const {
             afterSeconds,
-            ante,
             bigBlind,
             smallBlind,
         } = blindStructureItem;
@@ -21,8 +20,10 @@ const CreateBlindStructureList = (timeBasedRules) => {
         minute = minute.toString().length === 1 ? `0${minute}` : minute;
         second = second.toString().length === 1 ? `0${second}` : second;
 
+        const level = x + 1;
+
         list.push({
-            userLevel: `${ante}`,
+            userLevel: `${level}`,
             timeText: `${minute.toString()}:${second.toString()}`,
             blindLabel: `${smallBlind}/${bigBlind}`,
         });
